@@ -1,5 +1,4 @@
 import sys
-from ast import literal_eval
 from random import choice, randrange
 from time import sleep
 

@@ -1,4 +1,6 @@
-from random import randrange
+import sys
+from random import choice, randrange
+from time import sleep
 
 def lancer():
     sleep(3)
