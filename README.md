@@ -12,7 +12,8 @@ Argument 1:
 - 1: dummy0 vs phantom
 - 2: inspector vs dummy1
 - 3: inspector vs phantom
-- no argument: classic dummy0 vs dummy1<a/>
+- no argument: classic dummy0 vs dummy1
+<a/>
     Argument 2:
 - int which represent the number of matchs for the validation test
 - no argument: launch 10 matchs for the validation test
