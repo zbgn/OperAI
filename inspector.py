@@ -2,17 +2,19 @@ import sys
 from random import choice, randrange
 from time import sleep
 
+
 def lancer():
-    sleep(3)
     fini = False
     old_question = ""
+    first = True
     while not fini:
         infof = open('./0/infos.txt', 'r')
         lines = infof.readlines()
         infof.close()
         if len(lines) > 0:
             # phantom_color = lines[0].split(':')[-1].strip()
-            fini = "Score final" in lines[-1]
+            fini = "Score final" in lines[-1] and not first
+        first = False
         # print(phantom_color)
         qf = open('./0/questions.txt', 'r')
         question = qf.read()
