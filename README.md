@@ -1,11 +1,11 @@
-M_AI_Intro
+# M_AI_Intro
 
-# Informations
+## Informations
 
 dummy0 = inspector dummy version
 dummy1 = phantom dummy version
 
-# Validation tests
+## Validation tests
 Launch server.py with following arguments:<br>
 #### Argument 1
 - 0: dummy0 vs dummy1
