@@ -58,5 +58,5 @@ docs/_build/
 target/
 
 # OperAI specific
-0/
-1/
+0/*
+1/*

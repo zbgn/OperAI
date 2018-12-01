@@ -273,6 +273,7 @@ class Validation_Test:
         winners = [0, 0]
         infos = str(nb) + ' ' + self._player0 + ' vs ' + self._player1 + ':'
         for i in range(nb):
+            # print('Game: {}/{} '.format(i+1, nb), end='')
             global joueurs
             joueurs = [joueur(0), joueur(1)]
             self.__init_match()

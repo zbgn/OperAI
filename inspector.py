@@ -2,6 +2,7 @@ import sys
 from random import choice, randrange
 from time import sleep
 
+color = ['rose','rouge','gris','bleu','marron','noir','blanc','violet']
 
 def lancer():
     fini = False
@@ -36,15 +37,18 @@ def lancer():
                 rf.write(str(randrange(len(pos_list))))
             # Parsing pouvoir
             elif ('(' in question.lower()):
+                color_choice = None
                 pos_list = question.split('(')[1].strip().split(')')[0].strip()
                 if ('-' in pos_list):
                     pos_list = pos_list.split('-') # Choix des salles pour les pouvoirs
                 elif ('/' in pos_list):
                     pos_list = pos_list.split('/') # Activation du pouvoir
+                elif ('pas violet!' in question.lower()):
+                    color_choice=choice(color[:-1])
                 else:
                     print('error parsing: \x1B[3m{:}\x1B[23m ; token not found.'.format(question.lower()), file=sys.stderr)
                     pos_list = [0, 1]
-                rf.write(str(randrange(int(pos_list[0]), int(pos_list[1]))))
+                rf.write(str(randrange(int(pos_list[0]), int(pos_list[1])))) if not color_choice else rf.write(color_choice)
             else:
                 rf.write(str(randrange(6)))
             rf.close()
