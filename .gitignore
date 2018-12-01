@@ -56,3 +56,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# OperAI specific
+0/
+1/
