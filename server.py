@@ -1,4 +1,7 @@
-from random import shuffle,randrange
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from random import shuffle, randrange
 from time import sleep
 from threading import Thread
 import dummy0, dummy1
@@ -10,64 +13,74 @@ from sys import argv
 from os import stat
 
 latence = 0.01
-permanents, deux, avant, apres = {'rose'}, {'rouge','gris','bleu'}, {'violet','marron'}, {'noir','blanc'}
+permanents, deux, avant, apres = {'rose'}, {'rouge', 'gris', 'bleu'}, {'violet', 'marron'}, {'noir', 'blanc'}
 couleurs = avant | permanents | apres | deux
-passages = [{1,4},{0,2},{1,3},{2,7},{0,5,8},{4,6},{5,7},{3,6,9},{4,9},{7,8}]
-pass_ext = [{1,4},{0,2,5,7},{1,3,6},{2,7},{0,5,8,9},{4,6,1,8},{5,7,2,9},{3,6,9,1},{4,9,5},{7,8,4,6}]
+passages = [{1, 4}, {0, 2}, {1, 3}, {2, 7}, {0, 5, 8}, {4, 6}, {5, 7}, {3, 6, 9}, {4, 9}, {7, 8}]
+pass_ext = [{1, 4}, {0, 2, 5, 7}, {1, 3, 6}, {2, 7}, {0, 5, 8, 9}, {4, 6, 1, 8}, {5, 7, 2, 9}, {3, 6, 9, 1}, {4, 9, 5},
+            {7, 8, 4, 6}]
 
-def message(texte,jos):
+
+def message(texte, jos):
     for j in jos:
-        f = open("./"+str(j.numero)+"/infos.txt","a")
+        f = open("./" + str(j.numero) + "/infos.txt", "a")
         f.write(texte + "\n")
         f.close()
 
-def informer(texte):
-    message(texte,joueurs)
 
-def demander(q,j):
-    informer("QUESTION : "+q)
-    f = open("./"+str(j.numero)+"/questions"+".txt","w")
+def informer(texte):
+    message(texte, joueurs)
+
+
+def demander(q, j):
+    informer("QUESTION : " + q)
+    f = open("./" + str(j.numero) + "/questions" + ".txt", "w")
     f.write(q)
     f.close()
     sleep(latence)
-    f = open("./"+str(j.numero)+"/reponses"+".txt","r")
+    f = open("./" + str(j.numero) + "/reponses" + ".txt", "r")
     # r = f.read() # Zachary
-    r = f.readline() # Zachary
+    r = f.readline()  # Zachary
     f.close()
     # informer("REPONSE DONNEE : "+r) # Zachary
-    informer("REPONSE DONNEE : "+ str(r))  # Zachary
+    informer("REPONSE DONNEE : " + str(r))  # Zachary
     return r
 
+
 class personnage:
-    def __init__(self,couleur):
+    def __init__(self, couleur):
         self.couleur, self.suspect, self.position, self.pouvoir = couleur, True, 0, True
+
     def __repr__(self):
         susp = "-suspect" if self.suspect else "-clean"
         return self.couleur + "-" + str(self.position) + susp
-            
+
+
 class joueur:
-    def __init__(self,n):
+    def __init__(self, n):
         self.numero = n
         self.role = "l'inspecteur" if n == 0 else "le fantome"
-    def jouer(self,party):
-        informer("****\n  Tour de "+self.role)
+
+    def jouer(self, party):
+        informer("****\n  Tour de " + self.role)
         p = self.selectionner(party.tuiles_actives)
-        avec = self.activer_pouvoir(p,party,avant|deux)
-        self.bouger(p,avec,party.bloque)
-        self.activer_pouvoir(p,party,apres|deux)
-    def selectionner(self,t):
-        w = demander("Tuiles disponibles : " + str(t) + " choisir entre 0 et " + str(len(t)-1),self)
+        avec = self.activer_pouvoir(p, party, avant | deux)
+        self.bouger(p, avec, party.bloque)
+        self.activer_pouvoir(p, party, apres | deux)
+
+    def selectionner(self, t):
+        w = demander("Tuiles disponibles : " + str(t) + " choisir entre 0 et " + str(len(t) - 1), self)
         i = int(w) if w.isnumeric() and int(w) in range(len(t)) else 0
         p = t[i]
-        informer("REPONSE INTERPRETEE : "+str(p))
+        informer("REPONSE INTERPRETEE : " + str(p))
         informer(self.role + " joue " + p.couleur)
         del t[i]
         return p
-    def activer_pouvoir(self,p,party,activables):
+
+    def activer_pouvoir(self, p, party, activables):
         if p.pouvoir and p.couleur in activables:
-            a = demander("Voulez-vous activer le pouvoir (0/1) ?",self) == "1"
-            informer("REPONSE INTERPRETEE : "+str(a==1))
-            if a :
+            a = demander("Voulez-vous activer le pouvoir (0/1) ?", self) == "1"
+            informer("REPONSE INTERPRETEE : " + str(a == 1))
+            if a:
                 informer("Pouvoir de " + p.couleur + " activé")
                 p.pouvoir = False
                 if p.couleur == "rouge":
@@ -80,78 +93,83 @@ class joueur:
                     del party.cartes[0]
                 if p.couleur == "noir":
                     for q in party.personnages:
-                        if q.position in {x for x in passages[p.position] if x not in party.bloque or q.position not in party.bloque} :
+                        if q.position in {x for x in passages[p.position] if
+                                          x not in party.bloque or q.position not in party.bloque}:
                             q.position = p.position
-                            informer("NOUVEAU PLACEMENT : "+str(q))
+                            informer("NOUVEAU PLACEMENT : " + str(q))
                 if p.couleur == "blanc":
                     for q in party.personnages:
                         if q.position == p.position and p != q:
-                            dispo = {x for x in passages[p.position] if x not in party.bloque or q.position not in party.bloque}
-                            w = demander(str(q) + ", positions disponibles : " + str(dispo) + ", choisir la valeur",self)
+                            dispo = {x for x in passages[p.position] if
+                                     x not in party.bloque or q.position not in party.bloque}
+                            w = demander(str(q) + ", positions disponibles : " + str(dispo) + ", choisir la valeur",
+                                         self)
                             x = int(w) if w.isnumeric() and int(w) in dispo else dispo.pop()
-                            informer("REPONSE INTERPRETEE : "+str(x))
+                            informer("REPONSE INTERPRETEE : " + str(x))
                             q.position = x
-                            informer("NOUVEAU PLACEMENT : "+str(q))
+                            informer("NOUVEAU PLACEMENT : " + str(q))
                 if p.couleur == "violet":
                     informer("Rappel des positions :\n" + str(party))
-                    co = demander("Avec quelle couleur échanger (pas violet!) ?",self)
+                    co = demander("Avec quelle couleur échanger (pas violet!) ?", self)
                     if co not in couleurs:
                         co = "rose"
-                    informer("REPONSE INTERPRETEE : "+co)
+                    informer("REPONSE INTERPRETEE : " + co)
                     q = [x for x in party.personnages if x.couleur == co][0]
                     p.position, q.position = q.position, p.position
-                    informer("NOUVEAU PLACEMENT : "+str(p))
-                    informer("NOUVEAU PLACEMENT : "+str(q))
+                    informer("NOUVEAU PLACEMENT : " + str(p))
+                    informer("NOUVEAU PLACEMENT : " + str(q))
                 if p.couleur == "marron":
                     return [q for q in party.personnages if p.position == q.position]
                 if p.couleur == "gris":
-                    w = demander("Quelle salle obscurcir ? (0-9)",self)
+                    w = demander("Quelle salle obscurcir ? (0-9)", self)
                     party.shadow = int(w) if w.isnumeric() and int(w) in range(10) else 0
-                    informer("REPONSE INTERPRETEE : "+str(party.shadow))
+                    informer("REPONSE INTERPRETEE : " + str(party.shadow))
                 if p.couleur == "bleu":
-                    w = demander("Quelle salle bloquer ? (0-9)",self)
+                    w = demander("Quelle salle bloquer ? (0-9)", self)
                     x = int(w) if w.isnumeric() and int(w) in range(10) else 0
-                    w = demander("Quelle sortie ? Chosir parmi : "+str(passages[x]),self)
+                    w = demander("Quelle sortie ? Chosir parmi : " + str(passages[x]), self)
                     y = int(w) if w.isnumeric() and int(w) in passages[x] else passages[x].copy().pop()
-                    informer("REPONSE INTERPRETEE : "+str({x,y}))       
-                    party.bloque = {x,y}
+                    informer("REPONSE INTERPRETEE : " + str({x, y}))
+                    party.bloque = {x, y}
         return [p]
-                    
-    def bouger(self,p,avec,bloque):
+
+    def bouger(self, p, avec, bloque):
         pass_act = pass_ext if p.couleur == 'rose' else passages
         if p.couleur != 'violet' or p.pouvoir:
             disp = {x for x in pass_act[p.position] if p.position not in bloque or x not in bloque}
-            w = demander("positions disponibles : " + str(disp) + ", choisir la valeur",self)
+            w = demander("positions disponibles : " + str(disp) + ", choisir la valeur", self)
             x = int(w) if w.isnumeric() and int(w) in disp else disp.pop()
-            informer("REPONSE INTERPRETEE : "+str(x))
+            informer("REPONSE INTERPRETEE : " + str(x))
             for q in avec:
                 q.position = x
-                informer("NOUVEAU PLACEMENT : "+str(q))
+                informer("NOUVEAU PLACEMENT : " + str(q))
+
 
 class partie:
-    def __init__(self,joueurs):
-        for i in [0,1]:
-            f = open("./" + str(i) + "/infos.txt","w")
+    def __init__(self, joueurs):
+        for i in [0, 1]:
+            f = open("./" + str(i) + "/infos.txt", "w")
             f.close()
-            f = open("./" + str(i) + "/questions.txt","w")
+            f = open("./" + str(i) + "/questions.txt", "w")
             f.close()
-            f = open("./" + str(i) + "/reponses.txt","w")
+            f = open("./" + str(i) + "/reponses.txt", "w")
             f.close()
         self.joueurs = joueurs
         self.start, self.end, self.num_tour, self.shadow, x = 4, 22, 1, randrange(10), randrange(10)
-        self.bloque = {x,passages[x].copy().pop()}
+        self.bloque = {x, passages[x].copy().pop()}
         self.personnages = {personnage(c) for c in couleurs}
         self.tuiles = [p for p in self.personnages]
         self.cartes = self.tuiles[:]
         self.fantome = self.cartes[randrange(8)]
-        message("!!! Le fantôme est : "+self.fantome.couleur,[self.joueurs[1]])
+        message("!!! Le fantôme est : " + self.fantome.couleur, [self.joueurs[1]])
         self.cartes.remove(self.fantome)
-        self.cartes += ['fantome']*3
-        
+        self.cartes += ['fantome'] * 3
+
         shuffle(self.tuiles)
         shuffle(self.cartes)
-        for i,p in enumerate(self.tuiles):
+        for i, p in enumerate(self.tuiles):
             p.position = i
+
     def actions(self):
         joueur_actif = self.num_tour % 2
         if joueur_actif == 1:
@@ -159,25 +177,26 @@ class partie:
             self.tuiles_actives = self.tuiles[:4]
         else:
             self.tuiles_actives = self.tuiles[4:]
-        for i in [joueur_actif,1-joueur_actif,1-joueur_actif,joueur_actif]:
+        for i in [joueur_actif, 1 - joueur_actif, 1 - joueur_actif, joueur_actif]:
             self.joueurs[i].jouer(self)
+
     def lumiere(self):
         partition = [{p for p in self.personnages if p.position == i} for i in range(10)]
         if len(partition[self.fantome.position]) == 1 or self.fantome.position == self.shadow:
             informer("le fantome frappe")
             self.start += 1
-            for piece,gens in enumerate(partition):
+            for piece, gens in enumerate(partition):
                 if len(gens) > 1 and piece != self.shadow:
                     for p in gens:
                         p.suspect = False
         else:
             informer("pas de cri")
-            for piece,gens in enumerate(partition):
+            for piece, gens in enumerate(partition):
                 if len(gens) == 1 or piece == self.shadow:
                     for p in gens:
                         p.suspect = False
         self.start += len([p for p in self.personnages if p.suspect])
-            
+
     def tour(self):
         informer("**************************\n" + str(self))
         self.actions()
@@ -185,18 +204,22 @@ class partie:
         for p in self.personnages:
             p.pouvoir = True
         self.num_tour += 1
+
     def lancer(self):
         while self.start < self.end and len([p for p in self.personnages if p.suspect]) > 1:
             self.tour()
-        informer("L'enquêteur a trouvé - c'était " + str(self.fantome) if self.start < self.end else "Le fantôme a gagné")
-        informer("Score final : "+str(self.end-self.start))
+        informer(
+            "L'enquêteur a trouvé - c'était " + str(self.fantome) if self.start < self.end else "Le fantôme a gagné")
+        informer("Score final : " + str(self.end - self.start))
+
     def __repr__(self):
-        return "Tour:" + str(self.num_tour) + ", Score:"+str(self.start)+"/"+str(self.end) + ", Ombre:" + str(self.shadow) + ", Bloque:" + str(self.bloque) +"\n" + "  ".join([str(p) for p in self.personnages])
+        return "Tour:" + str(self.num_tour) + ", Score:" + str(self.start) + "/" + str(self.end) + ", Ombre:" + str(
+            self.shadow) + ", Bloque:" + str(self.bloque) + "\n" + "  ".join([str(p) for p in self.personnages])
 
 
 class Validation_Test:
     ## Validation tests class
-    
+
     def __init__(self, mode):
         ## Initialization of the objects variables
         self._mode = mode
@@ -218,7 +241,7 @@ class Validation_Test:
             # inspector vs phantom
             self._player0 = 'inspector'
             self._player1 = 'phantom'
-  
+
     def __init_match(self):
         ## Init the bots for a match
         self._threads = []
@@ -240,7 +263,7 @@ class Validation_Test:
             self._threads.append(Thread(target=(phantom.lancer)))
         [thread.start() for thread in self._threads]
         return None
-    
+
     def __get_winner_score(self):
         ## Get the winner and the score of a party
         with open('0/infos.txt', 'r') as f:
@@ -252,18 +275,18 @@ class Validation_Test:
         else:
             winner = 0
         return winner, score
-    
+
     def __process_results(self, infos, stats0, stats1, scores_mean):
         ## Print and write the results into the validation_tests.txt file
         print(infos + '\n' + stats0 + '\n' + stats1 + '\n' + scores_mean)
         results = ''
         if stat('validation_tests.txt').st_size != 0:
-            results +='\n\n'
+            results += '\n\n'
         results += infos + '\n' + stats0 + '\n' + stats1 + '\n' + scores_mean
         with open('validation_tests.txt', 'a') as f:
             f.write(results)
         return None
-    
+
     def launch(self, nb):
         ## Function to launch validation tests
         if self._player0 is None:
@@ -285,9 +308,9 @@ class Validation_Test:
             else:
                 winners[1] += 1
             scores += score
-        stats0 = self._player0 + ': won: ' + str(winners[0]) + ' ratio: ' + str(round(winners[0]/nb, 2))
-        stats1 = self._player1 + ': won: ' + str(winners[1]) + ' ratio: ' + str(round(winners[1]/nb, 2))
-        scores_mean = 'average score: ' + str(round(scores/nb, 2))
+        stats0 = self._player0 + ': won: ' + str(winners[0]) + ' ratio: ' + str(round(winners[0] / nb, 2))
+        stats1 = self._player1 + ': won: ' + str(winners[1]) + ' ratio: ' + str(round(winners[1] / nb, 2))
+        scores_mean = 'average score: ' + str(round(scores / nb, 2))
         self.__process_results(infos, stats0, stats1, scores_mean)
         return None
 
@@ -302,7 +325,7 @@ if len(argv) > 1:
         val.launch(10)
 else:
     # Basic server: Launch a dummy0 vs dummy1 party
-    joueurs = [joueur(0),joueur(1)]
+    joueurs = [joueur(0), joueur(1)]
     Thread(target=(dummy0.lancer)).start()
     Thread(target=(dummy1.lancer)).start()
     partie(joueurs).lancer()

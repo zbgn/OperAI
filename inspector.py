@@ -46,7 +46,7 @@ def lancer():
                 elif ('pas violet!' in question.lower()):
                     color_choice=choice(color[:-1])
                 else:
-                    print('error parsing: \x1B[3m{:}\x1B[23m ; token not found.'.format(question.lower()), file=sys.stderr)
+                    #print('error parsing: \x1B[3m{:}\x1B[23m ; token not found.'.format(question.lower()), file=sys.stderr)
                     pos_list = [0, 1]
                 rf.write(str(randrange(int(pos_list[0]), int(pos_list[1])))) if not color_choice else rf.write(color_choice)
             else:
