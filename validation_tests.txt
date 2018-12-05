@@ -172,3 +172,118 @@ average score: 0.0
 dummy0: won: 70 ratio: 0.7
 phantom: won: 30 ratio: 0.3
 average score: 4.89
+
+10 dummy0 vs phantom:
+dummy0: won: 9 ratio: 0.9
+phantom: won: 1 ratio: 0.1
+average score: 5.8
+
+1 dummy0 vs phantom:
+dummy0: won: 1 ratio: 1.0
+phantom: won: 0 ratio: 0.0
+average score: 2.0
+
+1 dummy0 vs phantom:
+dummy0: won: 1 ratio: 1.0
+phantom: won: 0 ratio: 0.0
+average score: 6.0
+
+1 dummy0 vs phantom:
+dummy0: won: 1 ratio: 1.0
+phantom: won: 0 ratio: 0.0
+average score: 7.0
+
+1 dummy0 vs phantom:
+dummy0: won: 1 ratio: 1.0
+phantom: won: 0 ratio: 0.0
+average score: 7.0
+
+1 dummy0 vs phantom:
+dummy0: won: 0 ratio: 0.0
+phantom: won: 1 ratio: 1.0
+average score: -1.0
+
+1 dummy0 vs phantom:
+dummy0: won: 0 ratio: 0.0
+phantom: won: 1 ratio: 1.0
+average score: -2.0
+
+10 dummy0 vs phantom:
+dummy0: won: 5 ratio: 0.5
+phantom: won: 5 ratio: 0.5
+average score: 2.2
+
+10 dummy0 vs phantom:
+dummy0: won: 6 ratio: 0.6
+phantom: won: 4 ratio: 0.4
+average score: 3.8
+
+20 dummy0 vs phantom:
+dummy0: won: 9 ratio: 0.45
+phantom: won: 11 ratio: 0.55
+average score: 2.3
+
+1 dummy0 vs phantom:
+dummy0: won: 1 ratio: 1.0
+phantom: won: 0 ratio: 0.0
+average score: 9.0
+
+1 dummy0 vs phantom:
+dummy0: won: 0 ratio: 0.0
+phantom: won: 1 ratio: 1.0
+average score: -1.0
+
+1 dummy0 vs phantom:
+dummy0: won: 1 ratio: 1.0
+phantom: won: 0 ratio: 0.0
+average score: 12.0
+
+1 dummy0 vs phantom:
+dummy0: won: 0 ratio: 0.0
+phantom: won: 1 ratio: 1.0
+average score: 0.0
+
+1 dummy0 vs phantom:
+dummy0: won: 0 ratio: 0.0
+phantom: won: 1 ratio: 1.0
+average score: -1.0
+
+10 dummy0 vs phantom:
+dummy0: won: 5 ratio: 0.5
+phantom: won: 5 ratio: 0.5
+average score: 4.1
+
+30 dummy0 vs phantom:
+dummy0: won: 21 ratio: 0.7
+phantom: won: 9 ratio: 0.3
+average score: 4.8
+
+30 dummy0 vs phantom:
+dummy0: won: 22 ratio: 0.73
+phantom: won: 8 ratio: 0.27
+average score: 5.3
+
+30 dummy0 vs phantom:
+dummy0: won: 17 ratio: 0.57
+phantom: won: 13 ratio: 0.43
+average score: 2.23
+
+50 dummy0 vs phantom:
+dummy0: won: 28 ratio: 0.56
+phantom: won: 22 ratio: 0.44
+average score: 3.5
+
+100 dummy0 vs phantom:
+dummy0: won: 56 ratio: 0.56
+phantom: won: 44 ratio: 0.44
+average score: 3.52
+
+100 dummy0 vs phantom:
+dummy0: won: 50 ratio: 0.5
+phantom: won: 50 ratio: 0.5
+average score: 3.02
+
+10 dummy0 vs phantom:
+dummy0: won: 6 ratio: 0.6
+phantom: won: 4 ratio: 0.4
+average score: 6.0

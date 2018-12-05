@@ -1,1 +1,1 @@
-positions disponibles : {4}, choisir la valeur
+positions disponibles : {1, 3}, choisir la valeur

@@ -1,24 +1,17 @@
 import sys
 from random import choice, randrange
-from time import sleep
-from collections import namedtuple
 
-color = ['rose','rouge','gris','bleu','marron','noir','blanc','violet']
-
-status = {
-    'suspect' : 0,
-    'clean' : 1
-}
-
-#Passages entre salles
-debug = False
-salles = {0:[],1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[]}
 
 #passages = [{1,4},{0,2},{1,3},{2,7},{0,5,8},{4,6},{5,7},{3,6,9},{4,9},{7,8}]
-passages = [[1,4],[0,2],[1,3],[2,7],[0,5],[0,8],[5,8],[3,6],[6,9],[3,9],[4,6],[5,7],[4,9],[7,8]]
-pass_ext = [{1,4},{0,2,5,7},{1,3,6},{2,7},{0,5,8,9},{4,6,1,8},{5,7,2,9},{3,6,9,1},{4,9,5},{7,8,4,6}]
+salles = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: []}
+color = ['rose', 'rouge', 'gris', 'bleu', 'marron', 'noir', 'blanc', 'violet']
 
-passagesbis = [[1,4],[0,2],[1,3],[2,7],[0,5,8],[4,6],[5,7],[3,6,9],[4,9],[7,8]]
+#Debug
+debug = False
+
+#Passages entre salles
+passages = [[1,4],[0,2],[1,3],[2,7],[0,5,8],[4,6],[5,7],[3,6,9],[4,9],[7,8]]
+pass_ext = [{1,4},{0,2,5,7},{1,3,6},{2,7},{0,5,8,9},{4,6,1,8},{5,7,2,9},{3,6,9,1},{4,9,5},{7,8,4,6}]
 
 
 def who_is_the_best(post_list):
@@ -31,7 +24,7 @@ def who_is_the_best(post_list):
     result = post_list[0].split('-')
     result[1] = str(bestscore[0])
     for index, scores_perso in enumerate(scores):
-        for score_room in scores_perso
+        for score_room in scores_perso:
             if score_room[1] > bestscore[1]:
                 bestscore = score_room
                 result = post_list[index].split('-')
@@ -54,17 +47,17 @@ def get_score_per_room(rooms):
     return result
 
 
-def find_all_rooms(moves,rooms):
-    moves = moves -1
+def find_all_rooms(moves, rooms):
+    moves = moves - 1
     list_rooms = []
     list_rooms.extend(rooms)
     for room in list_rooms:
-        rooms.extend(passagesbis[room])
+        rooms.extend(passages[room])
     if moves < 1:
-        if len(rooms ) > 0:
-         rooms = set(rooms)
-        return rooms
-    find_all_rooms(moves,rooms)
+        if len(rooms) > 0:
+            rooms = set(rooms)
+            return rooms
+    find_all_rooms(moves, rooms)
     rooms = set(rooms)
     return rooms
 
@@ -119,13 +112,12 @@ def lancer():
 
         if question != old_question and question != '':
             if debug:
-                print (question)
+                print(question)
 
             rf = open('./1/reponses.txt', 'w')
 
             # Choix des positions (salles)
             if ('{' in question.lower()):
-                #on choisit une positon               
                 pos_list = question.split('{')[1].strip().split('}')[0].strip()
                 pos_list = [int(i) for i in pos_list.split(',')]
                 
@@ -135,7 +127,6 @@ def lancer():
 
             # Choix de la tuile (personnage)
             elif('[' in question.lower()):
-                # on rempli les salles
                 pos_list = question.split('[')[1].strip().split(']')[0].strip()
                 pos_list = pos_list.split(',')
                 # indices = [i for i, s in enumerate(pos_list) if phantom_color in s.lower()]
@@ -149,20 +140,23 @@ def lancer():
                 
             # Parsing pouvoir
             elif ('(' in question.lower()):
-                color_choice=None
+                color_choice = None
                 pos_list = question.split('(')[1].strip().split(')')[0].strip()
+                #print (pos_list)
                 if ('-' in pos_list):
-                    pos_list = pos_list.split('-') # Choix des salles pour les pouvoirs
+                    pos_list = pos_list.split('-') #Choix des salles pour les pouvoirs
                 elif ('/' in pos_list):
-                    pos_list = pos_list.split('/') # Activation du pouvoir
+                    pos_list = pos_list.split('/') #Activation du pouvoir
                 elif ('pas violet!' in question.lower()):
-                    color_choice=choice(color[:-1])
+                    color_choice = choice(color[:-1])
                 else:
-                    #print('error parsing: \x1B[3m{:}\x1B[23m ; token not found.'.format(question.lower()), file=sys.stderr)
+                    print('error parsing: \x1B[3m{:}\x1B[23m ; token not found.'.format(question.lower()), file=sys.stderr)
                     pos_list = [0, 1]
-                
+
                 #print("pouvoir")
-                send_response(rf, randrange(int(pos_list[0]), int(pos_list[1]))) if not color_choice else send_response(rf, color_choice)
+                #send_response(rf, "1")
+                send_response(rf, int(pos_list[1])) if not color_choice else send_response(rf, color_choice)
+                #send_response(rf, randrange(int(pos_list[0]), int(pos_list[1]))) if not color_choice else send_response(rf, color_choice)
             else:
                 send_response(rf, randrange(6))
             rf.close()

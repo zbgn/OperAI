@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b0a0a49-b6e5-4468-b741-4ca972d9f5dc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0/infos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/0/infos.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0/questions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/0/questions.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/1/infos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/infos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1/questions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/questions.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/1/reponses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/1/reponses.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dummy0.py" beforeDir="false" afterPath="$PROJECT_DIR$/dummy0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inspector.py" beforeDir="false" afterPath="$PROJECT_DIR$/inspector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phantom.py" beforeDir="false" afterPath="$PROJECT_DIR$/phantom.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/validation_tests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/validation_tests.txt" afterDir="false" />
@@ -23,65 +22,66 @@
     <session id="825403452">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="8" />
+          <entry key="py" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="8" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="319" />
+          <entry key="py" value="466" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="319" />
+          <entry key="Python" value="466" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/phantom.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+            <state relative-caret-position="198">
+              <caret line="120" column="30" selection-start-line="120" selection-start-column="30" selection-end-line="120" selection-end-column="30" />
               <folding>
-                <element signature="e#47#84#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dummy0.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/phantom.py">
+        <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="226">
+              <caret line="314" lean-forward="true" selection-start-line="314" selection-end-line="314" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#47#84#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,7 +99,13 @@
       <find>position</find>
       <find>choix</find>
       <find>disponi</find>
+      <find>passages</find>
+      <find>passagesbis</find>
+      <find>status</find>
       <find>print</find>
+      <find>choice(</find>
+      <find>choice</find>
+      <find>__get_winner_score</find>
     </findStrings>
     <replaceStrings>
       <replace>e</replace>
@@ -113,8 +119,8 @@
       <list>
         <option value="$PROJECT_DIR$/inspector.py" />
         <option value="$PROJECT_DIR$/server.py" />
-        <option value="$PROJECT_DIR$/phantom.py" />
         <option value="$PROJECT_DIR$/dummy0.py" />
+        <option value="$PROJECT_DIR$/phantom.py" />
       </list>
     </option>
   </component>
@@ -127,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,6 +144,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -171,7 +177,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
-      <option name="PARAMETERS" value="1 100" />
+      <option name="PARAMETERS" value="1 10" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -200,14 +206,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2122449" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2122449" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -215,7 +220,7 @@
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3244898" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.35816327" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -233,30 +238,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phantom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        <state relative-caret-position="226">
+          <caret line="314" lean-forward="true" selection-start-line="314" selection-end-line="314" />
           <folding>
             <element signature="e#47#84#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="1045" column="40" lean-forward="true" selection-start-line="1045" selection-start-column="40" selection-end-line="1045" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dummy0.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phantom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="120" column="30" selection-start-line="120" selection-start-column="30" selection-end-line="120" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

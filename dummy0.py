@@ -17,4 +17,4 @@ def lancer():
         infof.close()
         if len(lines) > 0:
             fini = "Score final" in lines[-1]
-    #print("partie finie")
+    print("partie finie", randrange(0, 256))
