@@ -22,6 +22,8 @@ passages = [[1,4],[0,2],[1,3],[2,7],[0,5,8],[4,6],[5,7],[3,6,9],[4,9],[7,8]]
 pass_ext = [{1,4},{0,2,5,7},{1,3,6},{2,7},{0,5,8,9},{4,6,1,8},{5,7,2,9},{3,6,9,1},{4,9,5},{7,8,4,6}]
 
 
+
+
 def who_is_the_best(post_list):
     scores = []
     for pos in post_list:
@@ -113,6 +115,8 @@ def update_room_other(new_lines):
         pass
                 
 
+
+
 def send_response(rf, msg):
     msg = str(msg)
     dprint (msg)
@@ -154,8 +158,7 @@ def lancer():
             if ('{' in question.lower()):
                 pos_list = question.split('{')[1].strip().split('}')[0].strip()
                 pos_list = [int(i) for i in pos_list.split(',')]
-                
-                direction = choice(pos_list)
+                direction = pos_list[0]
                 update_room(direction, choosen_char)
                 send_response(rf, direction)
 
@@ -165,9 +168,17 @@ def lancer():
                 pos_list = pos_list.split(',')
                 # indices = [i for i, s in enumerate(pos_list) if phantom_color in s.lower()]
 
-                result = who_is_the_best(pos_list)
-                dprint(result)
-                choosen_room = 0
+                result = who_is_the_best(pos_list).split('-')[0]
+
+                accu = 0
+                for tuile in pos_list:
+                    if result in tuile:
+                        break
+                    accu += 1
+
+                #dprint(result)
+                #print(question, result, accu)
+                choosen_room = accu
                 choosen_char = pos_list[choosen_room].split('-')[0] #get color of choose
                 
                 send_response(rf, choosen_room)
@@ -182,13 +193,15 @@ def lancer():
                 elif ('/' in pos_list):
                     pos_list = pos_list.split('/') #Activation du pouvoir
                 elif ('pas violet!' in question.lower()):
-                    color_choice = choice(color[:-1])
+                    #print (color[0])
+                    color_choice = color[0]#choice(color[0])
                 else:
                     dprint('error parsing: \x1B[3m{:}\x1B[23m ; token not found.'.format(question.lower()), file=sys.stderr)
                     pos_list = [0, 1]
 
                 dprint("pouvoir")
                 #send_response(rf, "1")
+                #print (question, pos_list[1]) if not color_choice else print (question, color_choice)
                 send_response(rf, int(pos_list[1])) if not color_choice else send_response(rf, color_choice)
                 #send_response(rf, randrange(int(pos_list[0]), int(pos_list[1]))) if not color_choice else send_response(rf, color_choice)
             else:
