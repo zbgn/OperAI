@@ -8,6 +8,7 @@ def lancer():
     fini = False
     old_question = ""
     first = True
+    old_question = ''
     while not fini:
         infof = open('./0/infos.txt', 'r')
         lines = infof.readlines()
@@ -20,13 +21,15 @@ def lancer():
         qf = open('./0/questions.txt', 'r')
         question = qf.read()
         qf.close()
-        if question != old_question:
+
+        if question != old_question and question != '':
             rf = open('./0/reponses.txt', 'w')
             # Choix des positions (salles)
             if ('{' in question.lower()):
                 pos_list = question.split('{')[1].strip().split('}')[0].strip()
                 pos_list = [int(i) for i in pos_list.split(',')]
-                rf.write(str(choice(pos_list)))
+                direction = str(pos_list[0])
+                rf.write(direction)
             # Choix de la tuile (personnage)
             elif('[' in question.lower()):
                 pos_list = question.split('[')[1].strip().split(']')[0].strip()
@@ -44,7 +47,7 @@ def lancer():
                 elif ('/' in pos_list):
                     pos_list = pos_list.split('/') # Activation du pouvoir
                 elif ('pas violet!' in question.lower()):
-                    color_choice=choice(color[:-1])
+                    color_choice = str(color[0])
                 else:
                     #print('error parsing: \x1B[3m{:}\x1B[23m ; token not found.'.format(question.lower()), file=sys.stderr)
                     pos_list = [0, 1]
@@ -53,4 +56,4 @@ def lancer():
                 rf.write(str(randrange(6)))
             rf.close()
             old_question = question
-    print("partie finie")
+
